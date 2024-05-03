@@ -29,11 +29,11 @@ Run the script directly from the command line:
 ```bash
 python script_name.py
 ```
-<img src="https://2acrestudios.com/wp-content/uploads/2024/05/376213993_output.png" style="width:300px;" align="right" />
+
 Follow the interactive prompts to select models and set parameters for the test. The script will guide you through the process of choosing models from a displayed list, inputting the desired temperature for the test, and entering the prompt.
 
 ## Functions
-
+<img src="https://2acrestudios.com/wp-content/uploads/2024/05/376213993_output.png" style="width:300px;" align="right" />
 ### `get_available_models()`
 
 Retrieves a list of available non-embedding models from the local API.
