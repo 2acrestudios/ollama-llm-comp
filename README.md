@@ -3,10 +3,9 @@
 
 # Multiple LLM One Prompt
 
-<img src="https://2acrestudios.com/wp-content/uploads/2024/05/3346000889_output.png" style="width:300px;" align="right" />
-
 ## Overview
 
+<img src="https://2acrestudios.com/wp-content/uploads/2024/05/3346000889_output.png" style="width:300px;" align="right" />
 This Python script is a command-line interface (CLI) tool designed to interact with a locally hosted machine learning model API to perform comparative performance tests across different models based on user-provided prompts. It allows you to easily compare results from multiple local LLMs, generating a response from the same prompt. It will automatically discover which Ollama models you have installed on your system and give you a list to choose from. We filter out embedding models and color code model families. You also get to set the temperature for each run. Your results will be presented in a formatted report in CLI.
 
 ## Features
