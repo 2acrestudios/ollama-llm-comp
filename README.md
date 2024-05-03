@@ -1,5 +1,7 @@
 # Multiple LLM One Prompt
 
+<img src="https://2acrestudios.com/wp-content/uploads/2024/05/3346000889_output.png" style="width:300px;" align="right" />
+
 ## Overview
 
 This Python script is a command-line interface (CLI) tool designed to interact with a locally hosted machine learning model API to perform comparative performance tests across different models based on user-provided prompts. It allows you to easily compare results from multiple local LLMs, generating a response from the same prompt. It will automatically discover which Ollama models you have installed on your system and give you a list to choose from. We filter out embedding models and color code model families. You also get to set the temperature for each run. Your results will be presented in a formatted report in CLI.
@@ -24,7 +26,7 @@ Run the script directly from the command line:
 ```bash
 python script_name.py
 ```
-
+<img src="https://2acrestudios.com/wp-content/uploads/2024/05/376213993_output.png" style="width:300px;" align="right" />
 Follow the interactive prompts to select models and set parameters for the test. The script will guide you through the process of choosing models from a displayed list, inputting the desired temperature for the test, and entering the prompt.
 
 ## Functions
@@ -74,6 +76,8 @@ Main function to run the CLI application.
 # One LLM Multiple Prompts
 
 ### Script Overview
+
+<img src="https://2acrestudios.com/wp-content/uploads/2024/05/359596278_output.png" style="width:300px;" align="right" />
 
 The script acts as a CLI tool to interact with a local API that serves machine learning models. It is designed to test a single model against multiple creative prompts to evaluate its output in different contexts. It features a user-friendly interface with real-time status updates through a custom spinner. With this script, you can run a single LLM through a 'prompt gauntlet' allowing you to have it generate unique responses for several different prompts in a single run. It automatically discovers which Ollama models you have installed and gives you an easy-to-use interface to choose your model, the temperature, and away it goes! You are presented with a nicely format report in CLI when the run is complete. The script offers a simple but effective way of measuring the performance of local LLM models using your own prompts that fit your use case.
 
