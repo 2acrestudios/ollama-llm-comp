@@ -164,7 +164,9 @@ Result: "Why did the marketer break up with the AI? It kept predicting 'It's not
 [Test complete! ASCII art]
 ```
 
-### To edit the prompts, find line #77. You can add as many prompts as you want, and the script will automatically iterate through your entire list. Just know you might over-run your display buffer in your terminal and lose some of your report if you have a very long list of prompts.
+### Edit the Test Prompts
+
+To edit the prompts, find line #77. You can add as many prompts as you want, and the script will automatically iterate through your entire list. Just know you might over-run your display buffer in your terminal and lose some of your report if you have a very long list of prompts.
 
 ```
     prompts = [
