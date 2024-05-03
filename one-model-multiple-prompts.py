@@ -1,9 +1,9 @@
 import requests
 import json
-from tqdm import tqdm
 from termcolor import colored
 from pyfiglet import Figlet
 import time
+import sys
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
@@ -16,7 +16,7 @@ def get_available_models():
         model["name"]
         for model in response.json()["models"]
         if "embed" not in model["name"]
-    ] 
+    ]
     return models
 
 
@@ -42,6 +42,14 @@ def call_ollama(model, prompt, temperature=0.5, context=None):
     return "".join(response_parts), part.get("context", None)
 
 
+def print_spinner(step):
+    """Prints a spinner animation."""
+    spinner = ['|', '/', '-', '\\']
+    idx = step % len(spinner)
+    sys.stdout.write('\r' + colored(spinner[idx] + " Thinking...", "magenta"))
+    sys.stdout.flush()
+
+
 def main():
     # Print ASCII art header
     f = Figlet(font="standard")
@@ -57,40 +65,38 @@ def main():
             color = "green"
         else:
             color = "yellow"  # Default color
-        print(f"{colored(i+1, color)}.{colored(model, color)}")
+        print(f"{colored(i + 1, color)}.{colored(model, color)}")
 
     # Get user's model choice
-    selected_index = input(
-        "Enter the index of the model you want to use: "
-    )
-    selected_index = int(selected_index.strip()) - 1
+    selected_index = int(input("Enter the index of the model you want to use: ").strip()) - 1
     model = available_models[selected_index]
+
+    # Get user's desired temperature
+    temperature = float(input("Enter the desired temperature (e.g., 0.9): "))
 
     prompts = [
         "Tell me a joke about using AI to do marketing.",
         "Write a limerick about a programmer who loves Python.",
         "Compose a haiku about the beauty of a starry night sky.",
     ]
+    results = []
 
-    context = None
+    step = 0
+    # Process prompts and store results
+    for prompt in prompts:
+        print_spinner(step)
+        result, _ = call_ollama(model, prompt, temperature=temperature)
+        results.append(result)
+        step += 1
 
-    # Progress bar for multiple prompts
-    with tqdm(
-        total=len(prompts),
-        desc=colored("Processing Prompts", "green"),
-        bar_format="{l_bar}{bar}|",
-        position=0,
-        leave=True,
-    ) as pbar:
-        for prompt in prompts:
-            print(f"\n{colored('Prompt:', 'blue')} {prompt}")
-            result, context = call_ollama(model, prompt, temperature=0.9, context=context)
-            print(f"{colored('Result:', 'yellow')} {result}\n")
-            pbar.update(1)
-            time.sleep(0.1)
-
-    print(colored("\nTest completed.", "magenta"))
-
+    # Print report
+    print(colored("\n\n--- Test Report ---", "magenta"))
+    print(f"Model: {colored(model, 'yellow')}")
+    print(f"Temperature: {colored(temperature, 'red')}")
+    print(colored("\nPrompts and Results:", "magenta"))
+    for i, (prompt, result) in enumerate(zip(prompts, results)):
+        print(f"{colored(i+1, 'blue')}. {prompt}")
+        print(f"   {colored('Result:', 'yellow')} {result}\n")
 
 if __name__ == "__main__":
     main()
