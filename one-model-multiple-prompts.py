@@ -94,8 +94,9 @@ def main():
     print(colored("------------------------------------------------------------", "magenta"))
     for i, (prompt, result) in enumerate(zip(prompts, results)):
         print(f"{colored(i+1, 'yellow')}. {prompt}")
-        print(f"   {colored('Result:', 'yellow')} {result}\n")
+        print(f"{colored('Result:', 'yellow')} {result}\n")
         print(colored("------------------------------------------------------------", "magenta"))
+    print(colored(f.renderText("Test complete!"), "green"))
 
 if __name__ == "__main__":
     main()
