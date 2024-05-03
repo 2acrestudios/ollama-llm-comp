@@ -1,7 +1,3 @@
-Below is a comprehensive final draft for the README.md documentation to accompany your Python script, designed to be published directly on your GitHub repository. This documentation is formatted in Markdown to ensure it displays properly on GitHub.
-
----
-
 # Multiple LLM One Prompt
 
 ## Overview
