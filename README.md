@@ -2,18 +2,16 @@
 
 ## Overview
 
-This Python script is a command-line interface (CLI) tool designed to interact with a locally hosted machine learning model API to perform comparative performance tests across different models based on user-provided prompts. It showcases handling API requests, parsing JSON responses, streaming data, and enhancing the command-line user experience with progress bars and colored text.
+This Python script is a command-line interface (CLI) tool designed to interact with a locally hosted machine learning model API to perform comparative performance tests across different models based on user-provided prompts. It allows you to easily compare results from multiple local LLMs, generating a response from the same prompt. It will automatically discover which Ollama models you have installed on your system and give you a list to choose from. We filter out embedding models and color code model families. You also get to set the temperature for each run. Your results will be presented in a formatted report in CLI.
 
 ## Features
 
 - **Model Retrieval**: Fetch available machine learning models from a local API.
 - **Interactive Testing**: Perform tests using selected models against a specified prompt.
-- **Visual Enhancements**: Use ASCII art and colored text to improve the readability and user experience of CLI outputs.
-- **Progress Tracking**: Utilize a progress bar to show ongoing test status.
 
 ## Installation
 
-Before running the script, ensure you have the required dependencies installed. You can install them using pip:
+Before running the script, ensure you have installed the required dependencies. You can install them using pip:
 
 ```bash
 pip install requests tqdm termcolor pyfiglet
