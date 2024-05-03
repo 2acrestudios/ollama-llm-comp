@@ -7,9 +7,7 @@ import sys
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
-
 def get_available_models():
-    """Retrieves the list of available models from the Ollama server, excluding embed models."""
     response = requests.get("http://localhost:11434/api/tags")
     response.raise_for_status()
     models = [
@@ -19,9 +17,7 @@ def get_available_models():
     ]
     return models
 
-
 def call_ollama(model, prompt, temperature=0.5, context=None):
-    """Sends a generation request to the Ollama server and returns the response."""
     payload = {
         "model": model,
         "prompt": prompt,
@@ -41,38 +37,42 @@ def call_ollama(model, prompt, temperature=0.5, context=None):
             break
     return "".join(response_parts), part.get("context", None)
 
-
 def print_spinner(step):
-    """Prints a spinner animation."""
     spinner = ['|', '/', '-', '\\']
     idx = step % len(spinner)
     sys.stdout.write('\r' + colored(spinner[idx] + " Thinking...", "magenta"))
     sys.stdout.flush()
 
-
 def main():
-    # Print ASCII art header
     f = Figlet(font="standard")
-    print(colored(f.renderText("Ollama LLM Test"), "cyan"))
-
-    # Get available models and display them with colors
+    print(colored(f.renderText("One LLM Multiple Prompts"), "blue"))
     available_models = get_available_models()
-    print(colored("Available Models:", "magenta"))
+    print(colored("------------------------------------------------------------", "magenta"))
+    print(colored("Choose the model you want to test against your test prompts.", "white"))
+    print(colored("------------------------------------------------------------", "magenta"))
+    print(colored("Available Models:", "white"))
+    print(colored("------------------------------------------------------------", "magenta"))
     for i, model in enumerate(available_models):
         if "llama" in model:
             color = "cyan"
         elif "mistral" in model:
             color = "green"
         else:
-            color = "yellow"  # Default color
+            color = "yellow"
         print(f"{colored(i + 1, color)}.{colored(model, color)}")
 
-    # Get user's model choice
-    selected_index = int(input("Enter the index of the model you want to use: ").strip()) - 1
+    selected_index_str = input("Enter the number of the model you want to test: ").strip()
+    if not selected_index_str:
+        selected_index = 0  # Default to the first model
+    else:
+        selected_index = int(selected_index_str) - 1
     model = available_models[selected_index]
 
-    # Get user's desired temperature
-    temperature = float(input("Enter the desired temperature (e.g., 0.9): "))
+    temperature_str = input("Enter the desired temperature (or press Enter for default 0.5): ")
+    if not temperature_str:
+        temperature = 0.5  # Default temperature
+    else:
+        temperature = float(temperature_str)
 
     prompts = [
         "Tell me a joke about using AI to do marketing.",
@@ -80,23 +80,22 @@ def main():
         "Compose a haiku about the beauty of a starry night sky.",
     ]
     results = []
-
     step = 0
-    # Process prompts and store results
     for prompt in prompts:
         print_spinner(step)
         result, _ = call_ollama(model, prompt, temperature=temperature)
         results.append(result)
         step += 1
-
-    # Print report
-    print(colored("\n\n--- Test Report ---", "magenta"))
-    print(f"Model: {colored(model, 'yellow')}")
+    print(colored("\n\n--- Test Report ---", "green"))
+    print(f"Model: {colored(model, 'cyan')}")
     print(f"Temperature: {colored(temperature, 'red')}")
-    print(colored("\nPrompts and Results:", "magenta"))
+    print(colored("------------------------------------------------------------", "magenta"))
+    print(colored("\nPrompts and Results:", "yellow"))
+    print(colored("------------------------------------------------------------", "magenta"))
     for i, (prompt, result) in enumerate(zip(prompts, results)):
-        print(f"{colored(i+1, 'blue')}. {prompt}")
+        print(f"{colored(i+1, 'yellow')}. {prompt}")
         print(f"   {colored('Result:', 'yellow')} {result}\n")
+        print(colored("------------------------------------------------------------", "magenta"))
 
 if __name__ == "__main__":
     main()
