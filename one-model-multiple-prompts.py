@@ -44,7 +44,7 @@ def print_spinner(step):
     sys.stdout.flush()
 
 def main():
-    f = Figlet(font="standard")
+    f = Figlet(font="big")
     print(colored(f.renderText("One LLM Multiple Prompts"), "blue"))
     available_models = get_available_models()
     print(colored("------------------------------------------------------------", "magenta"))
@@ -63,14 +63,14 @@ def main():
 
     selected_index_str = input("Enter the number of the model you want to test: ").strip()
     if not selected_index_str:
-        selected_index = 0  # Default to the first model
+        selected_index = 0
     else:
         selected_index = int(selected_index_str) - 1
     model = available_models[selected_index]
 
     temperature_str = input("Enter the desired temperature (or press Enter for default 0.5): ")
     if not temperature_str:
-        temperature = 0.5  # Default temperature
+        temperature = 0.5
     else:
         temperature = float(temperature_str)
 
