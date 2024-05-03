@@ -11,7 +11,7 @@ This Python script is a command-line interface (CLI) tool designed to interact w
 ## Features
 
 - **Model Retrieval**: Fetch available machine learning models from a local API.
-- **Interactive Testing**: Perform tests using selected models against a specified prompt.
+- **Interactive Testing**: Perform tests using selected models against a specified prompt and selected temperature.
 
 ## Installation
 
