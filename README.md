@@ -89,6 +89,8 @@ The script acts as a CLI tool to interact with a local API that serves machine l
 - **Custom Test Prompts**: Supports testing with a list of predefined creative prompts.
 - **Configurable Parameters**: Allows setting the model response temperature dynamically.
 
+<img src="https://2acrestudios.com/wp-content/uploads/2024/05/Screenshot-2024-05-05-at-1.40.54 PM-2.png" />
+
 ### Installation
 
 To run this script, ensure that the following Python packages are installed. You can install them using pip:
