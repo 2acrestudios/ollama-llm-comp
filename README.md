@@ -13,6 +13,8 @@ This Python script is a command-line interface (CLI) tool designed to interact w
 - **Model Retrieval**: Fetch available machine learning models from a local API.
 - **Interactive Testing**: Perform tests using selected models against a specified prompt and selected temperature.
 
+<img src="https://2acrestudios.com/wp-content/uploads/2024/05/Screenshot-2024-05-05-at-1.46.31 PM-2.png" />
+
 ## Installation
 
 Before running the script, ensure you have installed the required dependencies. You can install them using pip:
